@@ -167,6 +167,15 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
 .bg-giallo\/20{background:#fef3c7!important}
 @media(max-width:420px){.bex-wordmark{font-size:11px}.bex-value-strip span{font-size:11px}.bex-demo-personalization h2{font-size:17px}}
 </style>
+<style id="bex-interest-modal-style">
+#bex-interests-overlay[hidden]{display:none!important}
+#bex-interests-overlay{position:fixed;inset:0;z-index:99999;background:rgba(15,23,42,.68);display:flex;align-items:center;justify-content:center;padding:18px;overflow-y:auto}
+#bex-interests-overlay #bex-personalizzazione{position:relative;width:min(100%,540px);max-height:min(85vh,780px);overflow:auto;margin:auto;box-shadow:0 22px 70px rgba(0,0,0,.26);padding:24px 20px}
+#bex-interests-overlay .bex-interest-close{position:absolute;right:12px;top:8px;background:transparent;border:0;font-size:30px;line-height:1;color:#0f172a;cursor:pointer;padding:8px}
+#bex-interests-overlay h3{padding-right:32px}
+#bex-interest-launcher{display:block;margin:12px 0 18px;background:#e0f2fe;color:#075985;border:1px solid #7dd3fc;border-radius:12px;padding:11px 15px;font-weight:700;font-size:14px;cursor:pointer}
+#bex-interest-launcher:focus-visible,#bex-interests-overlay button:focus-visible{outline:3px solid #0284c7;outline-offset:3px}
+</style>
 </head>
 <body class="bg-avorio min-h-screen text-blunotte relative selection:bg-corallo selection:text-white">
 
@@ -175,16 +184,15 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
     <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('scopri')">
         <span class="bex-mark" aria-hidden="true"><i class="fa-solid fa-compass"></i></span>
-        <span class="bex-wordmark">BELLUNO <strong>EXPERIENCE</strong><small>SMART SHOPPING · DEMO</small></span>
+        <span class="bex-wordmark">BELLUNO <strong>EXPERIENCE</strong><small>SMART SHOPPING</small></span>
       </div>
 
       <div class="flex items-center space-x-3 text-xs">
         <!-- Edition Selector Dropdown -->
         <div class="relative inline-block">
           <select id="edition-selector" onchange="changeEdition(this.value)" class="bg-blunotte border border-verdesalvia text-avorio text-xs rounded-lg px-2 py-1 focus:outline-none focus:border-giallo">
-            <option value="ed_primavera_2026">Ediz. Primavera 2026</option>
-            <option value="ed_estate_2026">Ediz. Estate 2026</option>
-            <option value="ed_autunno_2026">Ediz. Autunno 2026</option>
+            <option value="ed_autunno_2026" selected>Ediz. Autunno 2026</option>
+            <option value="ed_inverno_2026_27">Ediz. Inverno 2026/27 · Partnership</option>
           </select>
         </div>
 
@@ -353,7 +361,7 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
         <div class="flex justify-between items-start border-b border-blunotte/10 pb-4 mb-5">
           <div>
             <span class="text-xs uppercase font-bold tracking-widest text-corallo">Belluno Experience</span>
-            <h3 class="font-serif text-2xl font-bold text-blunotte" id="passport-edition-title">Edizione Primavera 2026</h3>
+            <h3 class="font-serif text-2xl font-bold text-blunotte" id="passport-edition-title">Edizione Autunno 2026</h3>
           </div>
           <div class="text-right">
             <span class="text-xs text-blunotte/50 block">Timbri Raccolti</span>
@@ -369,33 +377,16 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
         <!-- Code Stamp Input Demo Box -->
         <div class="bg-avorio rounded-2xl p-4 border border-blunotte/10 space-y-3">
           <h4 class="font-serif font-bold text-sm text-blunotte flex items-center gap-2">
-            <i class="fa-solid fa-key text-giallo"></i> Validazione Timbro Dimostrativa
+            <i class="fa-solid fa-key text-giallo"></i> Registra il timbro della visita
           </h4>
-          <p class="text-xs text-blunotte/70">Digita un codice dimostrativo della lista qui sotto:</p>
+          <p class="text-xs text-blunotte/70">Inserisci il codice ricevuto presso la bottega per registrare la visita.</p>
           <div class="flex gap-2">
-            <input type="text" id="stamp-code-input" placeholder="Es. BELLUNO1" class="uppercase bg-white border border-blunotte/20 rounded-xl px-3 py-2 text-sm flex-1 focus:outline-none focus:border-corallo">
+            <input type="text" id="stamp-code-input" placeholder="Codice della bottega" class="uppercase bg-white border border-blunotte/20 rounded-xl px-3 py-2 text-sm flex-1 focus:outline-none focus:border-corallo">
             <button onclick="submitStampCode()" class="bg-corallo hover:bg-corallo/90 text-white font-medium text-xs px-4 py-2 rounded-xl transition-all shadow">
               Registra Timbro
             </button>
           </div>
-          <details class="mt-3 rounded-xl bg-white border border-blunotte/15 p-3" id="be-demo-stamp-codes">
-            <summary class="cursor-pointer text-sm font-semibold text-blunotte">🧪 Mostra i 12 codici di prova</summary>
-            <p class="text-xs text-blunotte/65 mt-2 mb-2">Solo per la dimostrazione: scegli un codice, copialo nel campo e premi “Registra Timbro”.</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs" id="be-demo-code-list">
-              <div>Moda Alpina — <code>LARICE-4821</code></div>
-              <div>Oro e Dolomiti — <code>ARNICA-9307</code></div>
-              <div>Caffè Campedèl — <code>GENZIANA-1648</code></div>
-              <div>La Bottega delle Idee — <code>RODODENDRO-5072</code></div>
-              <div>Sapori Bellunesi — <code>ABETE-8315</code></div>
-              <div>Passo Dopo Passo — <code>CIRMOLO-2490</code></div>
-              <div>Natura in Centro — <code>MUGO-6753</code></div>
-              <div>Casa Dolomiti — <code>STELLA-3986</code></div>
-              <div>Osteria del Piave — <code>FALCO-7104</code></div>
-              <div>Dolci Montagne — <code>MIRTILLO-5539</code></div>
-              <div>Foto Ricordi — <code>CAMOSCIO-8862</code></div>
-              <div>Verticale Outdoor — <code>MARMOTTA-2271</code></div>
-            </div>
-          </details>
+          
         </div>
       </div>
     </section>
@@ -416,7 +407,7 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
     <section id="tab-premi" class="tab-content hidden space-y-6">
       <div>
         <h2 class="text-2xl font-serif text-blunotte">Belluno Rewards & Premi</h2>
-        <p class="text-xs text-blunotte/60">Traguardi di visita e punti accumulati con gli acquisti demo.</p>
+        <p class="text-xs text-blunotte/60">Traguardi di visita e punti registrati.</p>
       </div>
 
       <!-- User Status & Rewards Balance Header -->
@@ -494,9 +485,9 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
 
       <!-- Purchase & Points History Log -->
       <div class="bg-white rounded-2xl p-5 shadow-sm border border-blunotte/10 space-y-3">
-        <h3 class="font-serif text-base font-bold text-blunotte">Storico Movimenti Punti Demo</h3>
+        <h3 class="font-serif text-base font-bold text-blunotte">Storico movimenti punti</h3>
         <div id="points-history" class="text-xs space-y-2 max-h-48 overflow-y-auto">
-          <p class="text-blunotte/50 italic">Nessun punto accumulato finora. Acquista un prodotto nelle schede negozi per ricevere punti demo.</p>
+          <p class="text-blunotte/50 italic">Nessun punto accumulato finora.</p>
         </div>
       </div>
     </section>
@@ -658,7 +649,7 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
         <h4 class="font-serif font-bold text-sm text-giallo">Dati della Sessione Corrente (LocalStorage Locale)</h4>
         <div class="flex justify-between border-b border-white/10 py-1">
           <span>Edizione Selezionata:</span>
-          <strong id="kpi-current-edition">Ediz. Primavera 2026</strong>
+          <strong id="kpi-current-edition">Ediz. Autunno 2026</strong>
         </div>
         <div class="flex justify-between border-b border-white/10 py-1">
           <span>Timbri Collezionati dall'Utente:</span>
@@ -714,7 +705,7 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
        ========================================================================== */
 
     // Current Active Edition
-    let currentEdition = "ed_primavera_2026";
+    let currentEdition = "ed_autunno_2026";
     let activeCategoryFilter = "all";
     let leafletMap = null;
 
@@ -1305,14 +1296,15 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
         stampBtn.className = "w-full sm:w-auto bg-verdesalvia text-white font-medium text-xs px-4 py-2.5 rounded-xl cursor-default";
         stampIconBg.className = "w-10 h-10 rounded-full bg-verdesalvia text-white flex items-center justify-center text-xl";
       } else {
-        stampStatus.textContent = `Inserisci il codice demo: ${store.code}`;
+        stampStatus.textContent = "Richiedi il codice alla bottega e inseriscilo nel Passaporto.";
         stampStatus.className = "text-xs text-blunotte/60";
-        stampBtn.textContent = "Simula Timbratura";
+        stampBtn.textContent = "Richiedi il timbro";
         stampBtn.disabled = false;
         stampBtn.className = "w-full sm:w-auto bg-corallo hover:bg-corallo/90 text-white font-medium text-xs px-4 py-2.5 rounded-xl transition-all shadow cursor-pointer";
         stampBtn.onclick = () => {
-          registerStamp(store.id, store.name);
-          openStoreModal(store.id); // Refresh modal view
+          closeModal('store-modal');
+          switchTab('passaporto');
+          setTimeout(() => document.getElementById('stamp-code-input')?.focus(), 300);
         };
         stampIconBg.className = "w-10 h-10 rounded-full bg-giallo/30 text-corallo flex items-center justify-center text-xl";
       }
@@ -1596,7 +1588,46 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
     if (!store) return;
     const win = window.open('', '_blank', 'width=680,height=650');
     if (!win) { alert('Consenti le finestre popup per stampare il coupon.'); return; }
-    const html = `<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Coupon ${esc(store.name)}</title><style>body{font-family:Arial,sans-serif;padding:36px;color:#0F172A}.ticket{max-width:530px;margin:auto;border:2px dashed #0F172A;border-radius:20px;padding:36px;text-align:center}h1{font-size:27px}.discount{font-size:76px;color:#059669;font-weight:bold;margin:16px}code{font-size:23px;letter-spacing:2px}small{display:block;margin-top:22px;line-height:1.6;color:#555}@media print{button{display:none}}</style></head><body><div class="ticket"><p>BELLUNO EXPERIENCE 2.0</p><h1>${esc(store.name)}</h1><div class="discount">${discount(id)}%</div><p>Coupon dimostrativo per acquisto in negozio</p><code>${esc(couponCode(id))}</code><small>${esc(couponConfig.validity)}<br>Offerta fittizia. Non valida per acquisti reali.<br>Non verificabile senza un sistema del commerciante.</small></div><p style="text-align:center"><button onclick="window.print()">Stampa coupon</button></p></body></html>`;
+    const html = `<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Coupon ${esc(store.name)}</title><style>body{font-family:Arial,sans-serif;padding:36px;color:#0F172A}.ticket{max-width:530px;margin:auto;border:2px dashed #0F172A;border-radius:20px;padding:36px;text-align:center}h1{font-size:27px}.discount{font-size:76px;color:#059669;font-weight:bold;margin:16px}code{font-size:23px;letter-spacing:2px}small{display:block;margin-top:22px;line-height:1.6;color:#555}@media print{button{display:none}}</style></head><body><div class="ticket"><p>BELLUNO EXPERIENCE 2.0</p><h1>${esc(store.name)}</h1><div class="discount">${discount(id)}%</div><p>Coupon dimostrativo per acquisto in negozio</p><code>${esc(couponCode(id))}</code><small>${esc(couponConfig.validity)}<br>Offerta fittizia. Non valida per acquisti reali.<br>Non verificabile senza un sistema del commerciante.</small></div><p style="text-align:center"><button onclick="window.print()">Stampa coupon</button></p>
+
+
+
+<style>
+#bex-winter-partners{display:none;min-height:70vh;padding:38px 18px;text-align:center;background:#f8fafc;color:#0f172a}
+body.bex-winter-mode #bex-winter-partners{display:block}
+body.bex-winter-mode main > :not(#bex-winter-partners){display:none!important}
+body.bex-winter-mode nav{display:none!important}
+#bex-winter-partners .winter-card{max-width:600px;margin:20px auto;padding:34px 24px;border-radius:24px;background:#fff;border:1px solid #cbd5e1}
+#bex-winter-partners h2{font:700 32px Georgia,serif;color:#0284c7;margin:12px 0}
+#bex-winter-partners p{margin:12px 0;line-height:1.65}
+#bex-return-autumn{background:#059669;color:white;border:0;border-radius:12px;padding:13px 20px;cursor:pointer}
+</style>
+<script>
+(function(){
+'use strict';
+const edition=document.getElementById('edition-selector');
+if(!edition)return;
+const winter=document.createElement('section');
+winter.id='bex-winter-partners';
+winter.innerHTML='<div class="winter-card"><p style="color:#059669;font-weight:700">PROSSIMA EDIZIONE</p><h2>Inverno 2026/27</h2><p>Belluno Experience sta preparando nuove opportunità per il territorio.</p><p>Hai un’attività a Belluno? Contattaci per valutare future collaborazioni.</p><p>Per informazioni, rivolgiti al team del progetto Belluno Experience.</p><button id="bex-return-autumn" type="button">Torna ad Autunno 2026</button></div>';
+document.querySelector('main')?.appendChild(winter);
+function syncEdition(){document.body.classList.toggle('bex-winter-mode',edition.value==='ed_inverno_2026_27');}
+edition.addEventListener('change',syncEdition);
+document.getElementById('bex-return-autumn').addEventListener('click',()=>{edition.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(edition.value);syncEdition();});
+edition.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(edition.value);syncEdition();
+const modal=document.getElementById('store-modal');
+if(modal){
+ // Prevent opening taps from being interpreted as backdrop close taps.
+ let lastOpened=0;
+ const prev=window.openStoreModal;
+ if(typeof prev==='function')window.openStoreModal=function(id){lastOpened=Date.now();return prev(id)};
+ modal.addEventListener('click',e=>{if(e.target===modal && Date.now()-lastOpened<450){e.stopImmediatePropagation();e.preventDefault()}},true);
+ modal.firstElementChild?.addEventListener('click',e=>e.stopPropagation());
+}
+const test=document.getElementById('be-demo-stamp-codes');if(test)test.remove();
+})();
+</script>
+</body></html>`;
     win.document.open(); win.document.write(html); win.document.close();
   }
   root.addEventListener('click', (e) => {
@@ -1618,7 +1649,7 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
 })();
 </script>
 
-</body> del file originale (dopo lo script esistente).
+Fine del file originale (dopo lo script esistente).
      Nessun'altra modifica al file originale e' necessaria. Per rimuovere la patch basta cancellare questo blocco. -->
 <script>
 (function () {
@@ -1842,7 +1873,46 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
 </script>
 
 <!-- ==== BELLUNO EXPERIENCE 2.0 - FASE 2 BLOCCO 2 (PATCH) ====
-     Incollare SUBITO PRIMA di </body>, DOPO la patch del Blocco 1 (che a sua volta segue lo script originale).
+     Incollare SUBITO PRIMA di 
+
+
+
+<style>
+#bex-winter-partners{display:none;min-height:70vh;padding:38px 18px;text-align:center;background:#f8fafc;color:#0f172a}
+body.bex-winter-mode #bex-winter-partners{display:block}
+body.bex-winter-mode main > :not(#bex-winter-partners){display:none!important}
+body.bex-winter-mode nav{display:none!important}
+#bex-winter-partners .winter-card{max-width:600px;margin:20px auto;padding:34px 24px;border-radius:24px;background:#fff;border:1px solid #cbd5e1}
+#bex-winter-partners h2{font:700 32px Georgia,serif;color:#0284c7;margin:12px 0}
+#bex-winter-partners p{margin:12px 0;line-height:1.65}
+#bex-return-autumn{background:#059669;color:white;border:0;border-radius:12px;padding:13px 20px;cursor:pointer}
+</style>
+<script>
+(function(){
+'use strict';
+const edition=document.getElementById('edition-selector');
+if(!edition)return;
+const winter=document.createElement('section');
+winter.id='bex-winter-partners';
+winter.innerHTML='<div class="winter-card"><p style="color:#059669;font-weight:700">PROSSIMA EDIZIONE</p><h2>Inverno 2026/27</h2><p>Belluno Experience sta preparando nuove opportunità per il territorio.</p><p>Hai un’attività a Belluno? Contattaci per valutare future collaborazioni.</p><p>Per informazioni, rivolgiti al team del progetto Belluno Experience.</p><button id="bex-return-autumn" type="button">Torna ad Autunno 2026</button></div>';
+document.querySelector('main')?.appendChild(winter);
+function syncEdition(){document.body.classList.toggle('bex-winter-mode',edition.value==='ed_inverno_2026_27');}
+edition.addEventListener('change',syncEdition);
+document.getElementById('bex-return-autumn').addEventListener('click',()=>{edition.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(edition.value);syncEdition();});
+edition.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(edition.value);syncEdition();
+const modal=document.getElementById('store-modal');
+if(modal){
+ // Prevent opening taps from being interpreted as backdrop close taps.
+ let lastOpened=0;
+ const prev=window.openStoreModal;
+ if(typeof prev==='function')window.openStoreModal=function(id){lastOpened=Date.now();return prev(id)};
+ modal.addEventListener('click',e=>{if(e.target===modal && Date.now()-lastOpened<450){e.stopImmediatePropagation();e.preventDefault()}},true);
+ modal.firstElementChild?.addEventListener('click',e=>e.stopPropagation());
+}
+const test=document.getElementById('be-demo-stamp-codes');if(test)test.remove();
+})();
+</script>
+</body>, DOPO la patch del Blocco 1 (che a sua volta segue lo script originale).
      Ordine finale: script originale -> patch Blocco 1 -> patch Blocco 2. Per annullarla basta cancellare questo blocco. -->
 <script>
 (function () {
@@ -2107,12 +2177,26 @@ const style=document.createElement('style');style.textContent=`
 .bex-reco{border-bottom:1px solid #e2e8f0;padding:9px 0}.bex-reco:last-child{border:0}.bex-qr{width:180px;max-width:100%;display:block;margin:8px auto}.bex-help{font-size:11px!important;color:#64748b!important}
 `;document.head.appendChild(style);
 const home=document.createElement('section');home.className='bex-extra';home.id='bex-personalizzazione';home.innerHTML=`<h3>✨ Le offerte per i tuoi interessi</h3><p>Seleziona ciò che ti piace: le botteghe più affini appariranno qui per prime. Preferenze salvate solo su questo dispositivo.</p><div id="bex-interests"></div><button type="button" class="bex-action" id="bex-save-interests">Salva preferenze</button><div id="bex-recommendations" aria-live="polite"></div>`;
-$('tab-scopri').insertBefore(home,$('tab-scopri').children[1]||null);
+// Preferenze in un dialogo richiudibile, non come pannello permanente.
+home.setAttribute('role','dialog');home.setAttribute('aria-modal','true');home.setAttribute('aria-label','Le offerte per i tuoi interessi');home.setAttribute('tabindex','-1');
+const interestBackdrop=document.createElement('div');interestBackdrop.id='bex-interests-overlay';interestBackdrop.hidden=true;
+const interestClose=document.createElement('button');interestClose.type='button';interestClose.className='bex-interest-close';interestClose.setAttribute('aria-label','Chiudi preferenze');interestClose.textContent='×';home.prepend(interestClose);
+interestBackdrop.appendChild(home);document.body.appendChild(interestBackdrop);
+const interestLauncher=document.createElement('button');interestLauncher.type='button';interestLauncher.id='bex-interest-launcher';interestLauncher.textContent='♡ Personalizza le offerte';
+$('tab-scopri').insertBefore(interestLauncher,$('tab-scopri').children[1]||null);
+let interestFocus=null;
+function openInterests(){interestFocus=document.activeElement;interestBackdrop.hidden=false;interestClose.focus();}
+function closeInterests(){interestBackdrop.hidden=true;if(interestFocus&&interestFocus.focus)interestFocus.focus();}
+interestLauncher.addEventListener('click',openInterests);
+interestClose.addEventListener('click',closeInterests);
+interestBackdrop.addEventListener('click',e=>{if(e.target===interestBackdrop)closeInterests()});
+interestBackdrop.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();closeInterests();return}if(e.key==='Tab'){const focusable=[...home.querySelectorAll('button,input:not([disabled])')];const first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+
 const choices=$('bex-interests');choices.innerHTML=categories.map((c,i)=>`<label class="bex-pill"><input type="checkbox" value="${esc(c)}" ${read('interests',[]).includes(c)?'checked':''}> ${esc(c)}</label>`).join('');
 function renderRecommendations(){let selected=read('interests',[]);let ordered=[...shops].sort((a,b)=>Number(selected.includes(b.category))-Number(selected.includes(a.category)));$('bex-recommendations').innerHTML='<p><strong>'+(selected.length?'Consigliati per te':'Scopri le botteghe')+'</strong></p>'+ordered.slice(0,5).map(x=>`<div class="bex-reco"><strong>${esc(x.name)}</strong> · ${esc(x.category)} <button type="button" class="bex-action bex-secondary" data-bex-open="${x.id}">Apri bottega</button></div>`).join('');}
-$('bex-save-interests').addEventListener('click',()=>{write('interests',[...choices.querySelectorAll('input:checked')].map(x=>x.value));renderRecommendations()});
+$('bex-save-interests').addEventListener('click',()=>{write('interests',[...choices.querySelectorAll('input:checked')].map(x=>x.value));renderRecommendations();closeInterests()});
 $('bex-recommendations').addEventListener('click',e=>{let b=e.target.closest('[data-bex-open]');if(b&&typeof window.openStoreModal==='function')window.openStoreModal(Number(b.dataset.bexOpen))});renderRecommendations();
-const panel=document.createElement('section');panel.className='bex-extra';panel.id='bex-wallet-demo';panel.innerHTML=`<h3>💚 Wallet, cashback e coupon post-acquisto</h3><span class="bex-tag">DEMO — nessun valore monetario</span><p>Cashback simulato: <strong>5%</strong> dell'importo inserito (percentuale di prova, non approvata). Ogni acquisto demo genera un coupon del 10% per un'altra bottega.</p><p><strong>Saldo cashback demo: <span id="bex-cashback-total">€ 0,00</span></strong></p><label for="bex-purchase-shop">Bottega dell'acquisto</label><br><select class="bex-field" id="bex-purchase-shop"></select><br><label for="bex-purchase-amount">Importo acquisto simulato (€)</label><br><input class="bex-field" id="bex-purchase-amount" type="number" min="0.01" max="10000" step="0.01" value="20"><br><button type="button" class="bex-action" id="bex-buy">Simula acquisto e ottieni vantaggi</button><p id="bex-purchase-feedback" role="status"></p><h3>I tuoi coupon post-acquisto</h3><div id="bex-post-coupons"></div><h3>Verifica coupon in cassa (simulazione)</h3><p>Inserisci o incolla il codice del coupon. La validazione avviene soltanto su questo dispositivo: non è sicura per transazioni reali.</p><input class="bex-field" id="bex-verify-code" placeholder="BEX-DEMO-..." autocomplete="off"><br><button type="button" class="bex-action" id="bex-verify">Verifica codice</button><button type="button" class="bex-action bex-secondary" id="bex-redeem">Convalida e segna utilizzato</button><p id="bex-verify-status" role="status"></p><h3>Storico acquisti demo</h3><div id="bex-transactions"></div><p class="bex-help">I QR sono dimostrativi. Se la libreria QR non è disponibile offline, il codice manuale resta utilizzabile. I dati possono essere modificati o cancellati dal browser.</p>`;
+const panel=document.createElement('section');panel.className='bex-extra';panel.id='bex-wallet-demo';panel.innerHTML=`<h3>💚 Wallet, cashback e coupon post-acquisto</h3><span class="bex-tag">VERSIONE DIMOSTRATIVA — nessun valore monetario</span><p>Cashback dimostrativo: <strong>5%</strong> dell'importo inserito (percentuale di prova, non approvata). Ogni acquisto demo genera un coupon del 10% per un'altra bottega.</p><p><strong>Saldo cashback demo: <span id="bex-cashback-total">€ 0,00</span></strong></p><label for="bex-purchase-shop">Bottega dell'acquisto</label><br><select class="bex-field" id="bex-purchase-shop"></select><br><label for="bex-purchase-amount">Importo acquisto (€)</label><br><input class="bex-field" id="bex-purchase-amount" type="number" min="0.01" max="10000" step="0.01" value="20"><br><button type="button" class="bex-action" id="bex-buy">Registra acquisto di prova</button><p id="bex-purchase-feedback" role="status"></p><h3>I tuoi coupon post-acquisto</h3><div id="bex-post-coupons"></div><h3>Verifica coupon in cassa</h3><p>Inserisci o incolla il codice del coupon. La validazione avviene soltanto su questo dispositivo: non è sicura per transazioni reali.</p><input class="bex-field" id="bex-verify-code" placeholder="Codice coupon" autocomplete="off"><br><button type="button" class="bex-action" id="bex-verify">Verifica codice</button><button type="button" class="bex-action bex-secondary" id="bex-redeem">Convalida e segna utilizzato</button><p id="bex-verify-status" role="status"></p><h3>Storico acquisti</h3><div id="bex-transactions"></div><p class="bex-help">I QR sono utilizzabili soltanto in questa dimostrazione. Se la libreria QR non è disponibile offline, il codice manuale resta utilizzabile. I dati possono essere modificati o cancellati dal browser.</p>`;
 $('tab-premi').insertBefore(panel,$('coupons-in-store')||null);
 $('bex-purchase-shop').innerHTML=shops.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('');
 const euro=n=>new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR'}).format(n);
@@ -2121,16 +2205,55 @@ const token=()=>{if(window.crypto&&crypto.getRandomValues){const b=new Uint32Arr
 function drawQR(el,code){el.textContent='';if(typeof window.QRCode==='function'){new window.QRCode(el,{text:code,width:150,height:150,correctLevel:window.QRCode.CorrectLevel.M});}else{el.textContent='QR non disponibile: usa il codice manuale.';}}
 function renderWallet(){
 $('bex-cashback-total').textContent=euro(transactions.reduce((a,t)=>a+t.cashback,0));
-$('bex-post-coupons').innerHTML=coupons.length?coupons.slice().reverse().map(c=>{const s=shops.find(x=>x.id===c.target);return `<article class="bex-ticket"><strong>${esc(s?s.name:'Bottega')}</strong> — 10% DEMO <span class="bex-tag">${c.used?'UTILIZZATO':'DISPONIBILE'}</span><p>Codice: <code>${esc(c.code)}</code></p><div class="bex-qr" id="bex-qr-${esc(c.code)}"></div><button type="button" class="bex-action bex-secondary" data-bex-copy="${esc(c.code)}">Copia codice</button></article>`}).join(''):'<p>Nessun coupon post-acquisto. Simula un acquisto per generarne uno.</p>';
-$('bex-transactions').innerHTML=transactions.length?transactions.slice().reverse().slice(0,20).map(t=>`<div class="bex-reco">${esc(t.store)} · ${euro(t.amount)} · cashback ${euro(t.cashback)} (demo)</div>`).join(''):'<p>Nessun acquisto simulato.</p>';
+$('bex-post-coupons').innerHTML=coupons.length?coupons.slice().reverse().map(c=>{const s=shops.find(x=>x.id===c.target);return `<article class="bex-ticket"><strong>${esc(s?s.name:'Bottega')}</strong> — 10% DEMO <span class="bex-tag">${c.used?'UTILIZZATO':'DISPONIBILE'}</span><p>Codice: <code>${esc(c.code)}</code></p><div class="bex-qr" id="bex-qr-${esc(c.code)}"></div><button type="button" class="bex-action bex-secondary" data-bex-copy="${esc(c.code)}">Copia codice</button></article>`}).join(''):'<p>Nessun coupon post-acquisto. Registra un acquisto per generarne uno.</p>';
+$('bex-transactions').innerHTML=transactions.length?transactions.slice().reverse().slice(0,20).map(t=>`<div class="bex-reco">${esc(t.store)} · ${euro(t.amount)} · cashback ${euro(t.cashback)} (demo)</div>`).join(''):'<p>Nessun acquisto registrato.</p>';
 for(const c of coupons){const el=$('bex-qr-'+c.code);if(el)drawQR(el,c.code)}
 }
-$('bex-buy').addEventListener('click',()=>{const id=Number($('bex-purchase-shop').value), amount=Number($('bex-purchase-amount').value);if(!Number.isFinite(amount)||amount<=0||amount>10000){$('bex-purchase-feedback').textContent='Inserisci un importo valido tra € 0,01 e € 10.000.';return}const s=shops.find(x=>x.id===id), alternatives=shops.filter(x=>x.id!==id);if(!s||!alternatives.length)return;const target=alternatives[Math.floor(Math.random()*alternatives.length)];const t={id:token(),store:s.name,amount:Math.round(amount*100)/100,cashback:Math.round(amount*5)/100,date:new Date().toISOString()};transactions.push(t);coupons.push({code:'BEX-DEMO-'+token(),target:target.id,origin:id,used:false,date:t.date});write('transactions',transactions);write('postcoupons',coupons);$('bex-purchase-feedback').textContent=`Acquisto simulato da ${s.name}. Cashback ${euro(t.cashback)}; coupon creato per ${target.name}.`;renderWallet()});
+$('bex-buy').addEventListener('click',()=>{const id=Number($('bex-purchase-shop').value), amount=Number($('bex-purchase-amount').value);if(!Number.isFinite(amount)||amount<=0||amount>10000){$('bex-purchase-feedback').textContent='Inserisci un importo valido tra € 0,01 e € 10.000.';return}const s=shops.find(x=>x.id===id), alternatives=shops.filter(x=>x.id!==id);if(!s||!alternatives.length)return;const target=alternatives[Math.floor(Math.random()*alternatives.length)];const t={id:token(),store:s.name,amount:Math.round(amount*100)/100,cashback:Math.round(amount*5)/100,date:new Date().toISOString()};transactions.push(t);coupons.push({code:'BEX-DEMO-'+token(),target:target.id,origin:id,used:false,date:t.date});write('transactions',transactions);write('postcoupons',coupons);$('bex-purchase-feedback').textContent=`Acquisto registrato (demo) da ${s.name}. Cashback ${euro(t.cashback)}; coupon creato per ${target.name}.`;renderWallet()});
 $('bex-post-coupons').addEventListener('click',e=>{const b=e.target.closest('[data-bex-copy]');if(!b)return;const code=b.dataset.bexCopy;if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(code).catch(()=>prompt('Copia il codice:',code));else prompt('Copia il codice:',code)});
 function check(){const code=$('bex-verify-code').value.trim().toUpperCase();verified=coupons.find(c=>c.code===code&&!c.used)||null;const existing=coupons.find(c=>c.code===code);$('bex-verify-status').textContent=!existing?'Codice non trovato su questo dispositivo.':existing.used?'Coupon già utilizzato.':`Coupon valido (DEMO) per ${shops.find(x=>x.id===existing.target)?.name||'bottega'}.`;return verified}
 $('bex-verify').addEventListener('click',check);
 $('bex-redeem').addEventListener('click',()=>{const c=check();if(!c)return;if(!confirm('Confermi il riscatto dimostrativo di questo coupon?'))return;c.used=true;write('postcoupons',coupons);verified=null;$('bex-verify-status').textContent='Coupon segnato come utilizzato su questo dispositivo (DEMO).';renderWallet()});
 renderWallet();
+})();
+</script>
+
+
+
+
+<style>
+#bex-winter-partners{display:none;min-height:70vh;padding:38px 18px;text-align:center;background:#f8fafc;color:#0f172a}
+body.bex-winter-mode #bex-winter-partners{display:block}
+body.bex-winter-mode main > :not(#bex-winter-partners){display:none!important}
+body.bex-winter-mode nav{display:none!important}
+#bex-winter-partners .winter-card{max-width:600px;margin:20px auto;padding:34px 24px;border-radius:24px;background:#fff;border:1px solid #cbd5e1}
+#bex-winter-partners h2{font:700 32px Georgia,serif;color:#0284c7;margin:12px 0}
+#bex-winter-partners p{margin:12px 0;line-height:1.65}
+#bex-return-autumn{background:#059669;color:white;border:0;border-radius:12px;padding:13px 20px;cursor:pointer}
+</style>
+<script>
+(function(){
+'use strict';
+const edition=document.getElementById('edition-selector');
+if(!edition)return;
+const winter=document.createElement('section');
+winter.id='bex-winter-partners';
+winter.innerHTML='<div class="winter-card"><p style="color:#059669;font-weight:700">PROSSIMA EDIZIONE</p><h2>Inverno 2026/27</h2><p>Belluno Experience sta preparando nuove opportunità per il territorio.</p><p>Hai un’attività a Belluno? Contattaci per valutare future collaborazioni.</p><p>Per informazioni, rivolgiti al team del progetto Belluno Experience.</p><button id="bex-return-autumn" type="button">Torna ad Autunno 2026</button></div>';
+document.querySelector('main')?.appendChild(winter);
+function syncEdition(){document.body.classList.toggle('bex-winter-mode',edition.value==='ed_inverno_2026_27');}
+edition.addEventListener('change',syncEdition);
+document.getElementById('bex-return-autumn').addEventListener('click',()=>{edition.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(edition.value);syncEdition();});
+edition.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(edition.value);syncEdition();
+const modal=document.getElementById('store-modal');
+if(modal){
+ // Prevent opening taps from being interpreted as backdrop close taps.
+ let lastOpened=0;
+ const prev=window.openStoreModal;
+ if(typeof prev==='function')window.openStoreModal=function(id){lastOpened=Date.now();return prev(id)};
+ modal.addEventListener('click',e=>{if(e.target===modal && Date.now()-lastOpened<450){e.stopImmediatePropagation();e.preventDefault()}},true);
+ modal.firstElementChild?.addEventListener('click',e=>e.stopPropagation());
+}
+const test=document.getElementById('be-demo-stamp-codes');if(test)test.remove();
 })();
 </script>
 </body>

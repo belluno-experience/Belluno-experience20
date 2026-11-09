@@ -353,13 +353,31 @@
           <h4 class="font-serif font-bold text-sm text-blunotte flex items-center gap-2">
             <i class="fa-solid fa-key text-giallo"></i> Validazione Timbro Dimostrativa
           </h4>
-          <p class="text-xs text-blunotte/70">Digita il codice rilasciato dal negozio (es: <code class="bg-white px-1 py-0.5 rounded border border-blunotte/20 font-mono">BELLUNO1</code> fino a <code class="bg-white px-1 py-0.5 rounded border border-blunotte/20 font-mono">BELLUNO12</code>):</p>
+          <p class="text-xs text-blunotte/70">Digita un codice dimostrativo della lista qui sotto:</p>
           <div class="flex gap-2">
             <input type="text" id="stamp-code-input" placeholder="Es. BELLUNO1" class="uppercase bg-white border border-blunotte/20 rounded-xl px-3 py-2 text-sm flex-1 focus:outline-none focus:border-corallo">
             <button onclick="submitStampCode()" class="bg-corallo hover:bg-corallo/90 text-white font-medium text-xs px-4 py-2 rounded-xl transition-all shadow">
               Registra Timbro
             </button>
           </div>
+          <details class="mt-3 rounded-xl bg-white border border-blunotte/15 p-3" id="be-demo-stamp-codes">
+            <summary class="cursor-pointer text-sm font-semibold text-blunotte">🧪 Mostra i 12 codici di prova</summary>
+            <p class="text-xs text-blunotte/65 mt-2 mb-2">Solo per la dimostrazione: scegli un codice, copialo nel campo e premi “Registra Timbro”.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs" id="be-demo-code-list">
+              <div>Moda Alpina — <code>LARICE-4821</code></div>
+              <div>Oro e Dolomiti — <code>ARNICA-9307</code></div>
+              <div>Caffè Campedèl — <code>GENZIANA-1648</code></div>
+              <div>La Bottega delle Idee — <code>RODODENDRO-5072</code></div>
+              <div>Sapori Bellunesi — <code>ABETE-8315</code></div>
+              <div>Passo Dopo Passo — <code>CIRMOLO-2490</code></div>
+              <div>Natura in Centro — <code>MUGO-6753</code></div>
+              <div>Casa Dolomiti — <code>STELLA-3986</code></div>
+              <div>Osteria del Piave — <code>FALCO-7104</code></div>
+              <div>Dolci Montagne — <code>MIRTILLO-5539</code></div>
+              <div>Foto Ricordi — <code>CAMOSCIO-8862</code></div>
+              <div>Verticale Outdoor — <code>MARMOTTA-2271</code></div>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -1559,12 +1577,7 @@
     if (!store) return;
     const win = window.open('', '_blank', 'width=680,height=650');
     if (!win) { alert('Consenti le finestre popup per stampare il coupon.'); return; }
-    const html = `<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Coupon ${esc(store.name)}</title><style>body{font-family:Arial,sans-serif;padding:36px;color:#17324D}.ticket{max-width:530px;margin:auto;border:2px dashed #17324D;border-radius:20px;padding:36px;text-align:center}h1{font-size:27px}.discount{font-size:76px;color:#F26B5B;font-weight:bold;margin:16px}code{font-size:23px;letter-spacing:2px}small{display:block;margin-top:22px;line-height:1.6;color:#555}@media print{button{display:none}}</style></head><body><div class="ticket"><p>BELLUNO EXPERIENCE 2.0</p><h1>${esc(store.name)}</h1><div class="discount">${discount(id)}%</div><p>Coupon dimostrativo per acquisto in negozio</p><code>${esc(couponCode(id))}</code><small>${esc(couponConfig.validity)}<br>Offerta fittizia. Non valida per acquisti reali.<br>Non verificabile senza un sistema del commerciante.</small></div><p style="text-align:center"><button onclick="window.print()">Stampa coupon</button></p><script>
-if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(err => console.warn('Service worker non disponibile:',err)));
-}
-</script>
-</body></html>`;
+    const html = `<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Coupon ${esc(store.name)}</title><style>body{font-family:Arial,sans-serif;padding:36px;color:#17324D}.ticket{max-width:530px;margin:auto;border:2px dashed #17324D;border-radius:20px;padding:36px;text-align:center}h1{font-size:27px}.discount{font-size:76px;color:#F26B5B;font-weight:bold;margin:16px}code{font-size:23px;letter-spacing:2px}small{display:block;margin-top:22px;line-height:1.6;color:#555}@media print{button{display:none}}</style></head><body><div class="ticket"><p>BELLUNO EXPERIENCE 2.0</p><h1>${esc(store.name)}</h1><div class="discount">${discount(id)}%</div><p>Coupon dimostrativo per acquisto in negozio</p><code>${esc(couponCode(id))}</code><small>${esc(couponConfig.validity)}<br>Offerta fittizia. Non valida per acquisti reali.<br>Non verificabile senza un sistema del commerciante.</small></div><p style="text-align:center"><button onclick="window.print()">Stampa coupon</button></p></body></html>`;
     win.document.open(); win.document.write(html); win.document.close();
   }
   root.addEventListener('click', (e) => {
@@ -2047,5 +2060,10 @@ if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.
 })();
 </script>
 
+<script>
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(err => console.warn('Service worker non disponibile:',err)));
+}
+</script>
 </body>
 </html>

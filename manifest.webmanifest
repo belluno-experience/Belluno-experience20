@@ -1,13 +1,13 @@
 {
   "id": "./",
-  "name": "Belluno Experience 2.0",
-  "short_name": "Belluno Experience",
-  "description": "Botteghe, cultura e Dolomiti nel centro di Belluno — prototipo dimostrativo.",
+  "name": "Belluno Experience",
+  "short_name": "Belluno EXP",
+  "description": "Trova, Acquista, Risparmia — prototipo dimostrativo del centro di Belluno.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#FAF7F0",
-  "theme_color": "#17324D",
+  "background_color": "#F8FAFC",
+  "theme_color": "#0284C7",
   "lang": "it",
   "icons": [
     {

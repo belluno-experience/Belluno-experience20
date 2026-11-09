@@ -1,0 +1,24 @@
+BELLUNO EXPERIENCE 2.0 — PWA DIMOSTRATIVA
+
+CONTENUTO
+- index.html: app esistente, con login dimostrativo e supporto PWA
+- manifest.webmanifest: nome, icone e modalità standalone
+- service-worker.js: cache dei file locali
+- icons/: icone provvisorie, da sostituire dopo il lavoro di branding
+
+PUBBLICAZIONE GRATUITA SU GITHUB PAGES
+1. Crea un repository pubblico su github.com (es. belluno-experience).
+2. Carica il CONTENUTO di questa cartella nella radice del repository, mantenendo le sottocartelle.
+3. Vai in Settings > Pages > Build and deployment > Deploy from a branch.
+4. Seleziona main e / (root), quindi Save.
+5. Attendi che GitHub Pages mostri l'URL HTTPS (di solito https://TUO-UTENTE.github.io/belluno-experience/).
+6. Apri quell'URL su Safari (iPhone) o Chrome (Android).
+7. iPhone: Condividi > Aggiungi alla schermata Home. Android: menu > Installa app/Aggiungi a schermata Home.
+
+ATTENZIONE
+- Aprire index.html direttamente come file NON installa la PWA: occorre HTTPS (o localhost per sviluppo).
+- CDN Tailwind, Google Fonts, Font Awesome, Leaflet e le tessere della mappa richiedono rete: l'offline NON è completo.
+- Il login non verifica il numero né invia SMS. Il numero resta nel browser locale.
+- Punti, timbri e coupon sono dimostrativi e non sincronizzati tra dispositivi.
+- Non inserire numeri reali di clienti per campagne marketing senza adeguati requisiti privacy e sicurezza.
+- Questa versione non è stata verificata con test end-to-end su dispositivi reali.

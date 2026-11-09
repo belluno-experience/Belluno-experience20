@@ -1,0 +1,26 @@
+{
+  "id": "./",
+  "name": "Belluno Experience 2.0",
+  "short_name": "Belluno Experience",
+  "description": "Botteghe, cultura e Dolomiti nel centro di Belluno — prototipo dimostrativo.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FAF7F0",
+  "theme_color": "#17324D",
+  "lang": "it",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

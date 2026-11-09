@@ -529,7 +529,7 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
 
   <!-- STORE DETAIL MODAL & MINI-CATALOG -->
   <div id="store-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-blunotte/60 backdrop-blur-sm hidden no-print">
-    <div class="bg-avorio rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-white/40 animate-pulse-subtle flex flex-col">
+    <div class="bg-avorio rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-white/40 flex flex-col">
       
       <!-- Modal Header Image -->
       <div class="relative h-48 md:h-60 w-full flex-shrink-0">
@@ -1108,7 +1108,7 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
           <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md border border-blunotte/10 transition-all flex flex-col justify-between">
             <div>
               <div class="relative h-40 w-full overflow-hidden">
-                <img src="${store.image}" alt="Interno illustrativo di ${store.name}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                <img src="${store.image}" alt="Interno illustrativo di ${store.name}" class="w-full h-full object-cover ">
                 <img src="${storeBrandLogo(store.id)}" alt="Logo fittizio di ${store.name}" class="store-brand-overlay" loading="lazy">
                 <span class="absolute top-3 left-3 bg-blunotte/80 backdrop-blur-md text-white text-[10px] uppercase font-semibold px-2.5 py-1 rounded-full">
                   ${store.category}
@@ -1153,7 +1153,7 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
             <span class="text-[9px] font-bold text-blunotte/40 absolute top-2 left-2">#${index + 1}</span>
             
             ${isStamped 
-              ? `<div class="w-10 h-10 rounded-full bg-corallo text-white flex items-center justify-center text-lg shadow-md animate-bounce-short">
+              ? `<div class="w-10 h-10 rounded-full bg-corallo text-white flex items-center justify-center text-lg shadow-md ">
                   <i class="fa-solid fa-stamp"></i>
                  </div>
                  <span class="font-serif font-bold text-xs text-blunotte line-clamp-1">${store.name}</span>
@@ -1592,41 +1592,7 @@ button.bg-corallo,button.bg-blunotte,a.place-primary{background:var(--bex-green)
 
 
 
-<style>
-#bex-winter-partners{display:none;min-height:70vh;padding:38px 18px;text-align:center;background:#f8fafc;color:#0f172a}
-body.bex-winter-mode #bex-winter-partners{display:block}
-body.bex-winter-mode main > :not(#bex-winter-partners){display:none!important}
-body.bex-winter-mode nav{display:none!important}
-#bex-winter-partners .winter-card{max-width:600px;margin:20px auto;padding:34px 24px;border-radius:24px;background:#fff;border:1px solid #cbd5e1}
-#bex-winter-partners h2{font:700 32px Georgia,serif;color:#0284c7;margin:12px 0}
-#bex-winter-partners p{margin:12px 0;line-height:1.65}
-#bex-return-autumn{background:#059669;color:white;border:0;border-radius:12px;padding:13px 20px;cursor:pointer}
-</style>
-<script>
-(function(){
-'use strict';
-const edition=document.getElementById('edition-selector');
-if(!edition)return;
-const winter=document.createElement('section');
-winter.id='bex-winter-partners';
-winter.innerHTML='<div class="winter-card"><p style="color:#059669;font-weight:700">PROSSIMA EDIZIONE</p><h2>Inverno 2026/27</h2><p>Belluno Experience sta preparando nuove opportunità per il territorio.</p><p>Hai un’attività a Belluno? Contattaci per valutare future collaborazioni.</p><p>Per informazioni, rivolgiti al team del progetto Belluno Experience.</p><button id="bex-return-autumn" type="button">Torna ad Autunno 2026</button></div>';
-document.querySelector('main')?.appendChild(winter);
-function syncEdition(){document.body.classList.toggle('bex-winter-mode',edition.value==='ed_inverno_2026_27');}
-edition.addEventListener('change',syncEdition);
-document.getElementById('bex-return-autumn').addEventListener('click',()=>{edition.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(edition.value);syncEdition();});
-edition.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(edition.value);syncEdition();
-const modal=document.getElementById('store-modal');
-if(modal){
- // Prevent opening taps from being interpreted as backdrop close taps.
- let lastOpened=0;
- const prev=window.openStoreModal;
- if(typeof prev==='function')window.openStoreModal=function(id){lastOpened=Date.now();return prev(id)};
- modal.addEventListener('click',e=>{if(e.target===modal && Date.now()-lastOpened<450){e.stopImmediatePropagation();e.preventDefault()}},true);
- modal.firstElementChild?.addEventListener('click',e=>e.stopPropagation());
-}
-const test=document.getElementById('be-demo-stamp-codes');if(test)test.remove();
-})();
-</script>
+
 </body></html>`;
     win.document.open(); win.document.write(html); win.document.close();
   }
@@ -1877,41 +1843,7 @@ Fine del file originale (dopo lo script esistente).
 
 
 
-<style>
-#bex-winter-partners{display:none;min-height:70vh;padding:38px 18px;text-align:center;background:#f8fafc;color:#0f172a}
-body.bex-winter-mode #bex-winter-partners{display:block}
-body.bex-winter-mode main > :not(#bex-winter-partners){display:none!important}
-body.bex-winter-mode nav{display:none!important}
-#bex-winter-partners .winter-card{max-width:600px;margin:20px auto;padding:34px 24px;border-radius:24px;background:#fff;border:1px solid #cbd5e1}
-#bex-winter-partners h2{font:700 32px Georgia,serif;color:#0284c7;margin:12px 0}
-#bex-winter-partners p{margin:12px 0;line-height:1.65}
-#bex-return-autumn{background:#059669;color:white;border:0;border-radius:12px;padding:13px 20px;cursor:pointer}
-</style>
-<script>
-(function(){
-'use strict';
-const edition=document.getElementById('edition-selector');
-if(!edition)return;
-const winter=document.createElement('section');
-winter.id='bex-winter-partners';
-winter.innerHTML='<div class="winter-card"><p style="color:#059669;font-weight:700">PROSSIMA EDIZIONE</p><h2>Inverno 2026/27</h2><p>Belluno Experience sta preparando nuove opportunità per il territorio.</p><p>Hai un’attività a Belluno? Contattaci per valutare future collaborazioni.</p><p>Per informazioni, rivolgiti al team del progetto Belluno Experience.</p><button id="bex-return-autumn" type="button">Torna ad Autunno 2026</button></div>';
-document.querySelector('main')?.appendChild(winter);
-function syncEdition(){document.body.classList.toggle('bex-winter-mode',edition.value==='ed_inverno_2026_27');}
-edition.addEventListener('change',syncEdition);
-document.getElementById('bex-return-autumn').addEventListener('click',()=>{edition.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(edition.value);syncEdition();});
-edition.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(edition.value);syncEdition();
-const modal=document.getElementById('store-modal');
-if(modal){
- // Prevent opening taps from being interpreted as backdrop close taps.
- let lastOpened=0;
- const prev=window.openStoreModal;
- if(typeof prev==='function')window.openStoreModal=function(id){lastOpened=Date.now();return prev(id)};
- modal.addEventListener('click',e=>{if(e.target===modal && Date.now()-lastOpened<450){e.stopImmediatePropagation();e.preventDefault()}},true);
- modal.firstElementChild?.addEventListener('click',e=>e.stopPropagation());
-}
-const test=document.getElementById('be-demo-stamp-codes');if(test)test.remove();
-})();
-</script>
+
 </body>, DOPO la patch del Blocco 1 (che a sua volta segue lo script originale).
      Ordine finale: script originale -> patch Blocco 1 -> patch Blocco 2. Per annullarla basta cancellare questo blocco. -->
 <script>
@@ -2221,40 +2153,55 @@ renderWallet();
 
 
 
+
+
 <style>
-#bex-winter-partners{display:none;min-height:70vh;padding:38px 18px;text-align:center;background:#f8fafc;color:#0f172a}
-body.bex-winter-mode #bex-winter-partners{display:block}
-body.bex-winter-mode main > :not(#bex-winter-partners){display:none!important}
-body.bex-winter-mode nav{display:none!important}
-#bex-winter-partners .winter-card{max-width:600px;margin:20px auto;padding:34px 24px;border-radius:24px;background:#fff;border:1px solid #cbd5e1}
-#bex-winter-partners h2{font:700 32px Georgia,serif;color:#0284c7;margin:12px 0}
-#bex-winter-partners p{margin:12px 0;line-height:1.65}
-#bex-return-autumn{background:#059669;color:white;border:0;border-radius:12px;padding:13px 20px;cursor:pointer}
+/* Correzione UI: nessuna animazione di scala nelle schede e nel dettaglio negozio. */
+#store-modal > div, #store-modal > div *, #stores-grid article, #stores-grid article * {animation:none!important;}
+#store-modal > div {transform:none!important; transition:none!important;}
+#store-modal .animate-pulse-subtle {animation:none!important;}
+#coupons-in-store, #modal-store-coupon {display:none!important;}
+#bex-marketing-offer {background:#ecfdf5;border:1px solid #a7f3d0;border-radius:15px;padding:15px;margin:12px 0;color:#065f46;font-size:14px;line-height:1.55;}
+#bex-marketing-offer strong {display:block;margin-bottom:6px;}
+#bex-winter-partners {display:none;min-height:70vh;padding:38px 18px;text-align:center;background:#f8fafc;color:#0f172a;}
+body.bex-winter-mode #bex-winter-partners {display:block;}
+body.bex-winter-mode main > :not(#bex-winter-partners) {display:none!important;}
+body.bex-winter-mode nav {display:none!important;}
+#bex-winter-partners .winter-card {max-width:600px;margin:20px auto;padding:34px 24px;border-radius:24px;background:white;border:1px solid #cbd5e1;}
 </style>
 <script>
-(function(){
-'use strict';
-const edition=document.getElementById('edition-selector');
-if(!edition)return;
-const winter=document.createElement('section');
-winter.id='bex-winter-partners';
-winter.innerHTML='<div class="winter-card"><p style="color:#059669;font-weight:700">PROSSIMA EDIZIONE</p><h2>Inverno 2026/27</h2><p>Belluno Experience sta preparando nuove opportunità per il territorio.</p><p>Hai un’attività a Belluno? Contattaci per valutare future collaborazioni.</p><p>Per informazioni, rivolgiti al team del progetto Belluno Experience.</p><button id="bex-return-autumn" type="button">Torna ad Autunno 2026</button></div>';
-document.querySelector('main')?.appendChild(winter);
-function syncEdition(){document.body.classList.toggle('bex-winter-mode',edition.value==='ed_inverno_2026_27');}
-edition.addEventListener('change',syncEdition);
-document.getElementById('bex-return-autumn').addEventListener('click',()=>{edition.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(edition.value);syncEdition();});
-edition.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(edition.value);syncEdition();
+(function(){'use strict';
+const offers=["Sconto 10% sulla nuova collezione", "Pulizia gioielli in omaggio oppure sconto 15%", "Caffè offerto oppure degustazione tipica", "Segnalibro Belluno EXP e sconto 10%", "Assaggio di formaggi tipici e voucher 10%", "Buono sconto 15% su calzature outdoor", "Campione omaggio di crema alpina", "Voucher da €10 su articoli regalo", "Calice di benvenuto per la cena", "Gusto omaggio su cono medio o grande", "Stampa omaggio di una foto ricordo Belluno", "Buono sconto 15% su articoli trekking"];
 const modal=document.getElementById('store-modal');
-if(modal){
- // Prevent opening taps from being interpreted as backdrop close taps.
- let lastOpened=0;
- const prev=window.openStoreModal;
- if(typeof prev==='function')window.openStoreModal=function(id){lastOpened=Date.now();return prev(id)};
- modal.addEventListener('click',e=>{if(e.target===modal && Date.now()-lastOpened<450){e.stopImmediatePropagation();e.preventDefault()}},true);
- modal.firstElementChild?.addEventListener('click',e=>e.stopPropagation());
+const desc=document.getElementById('modal-store-desc');
+if(modal && desc){
+ let offer=document.getElementById('bex-marketing-offer');
+ if(!offer){offer=document.createElement('section');offer.id='bex-marketing-offer';offer.setAttribute('aria-label','Offerta Passaporto');desc.insertAdjacentElement('afterend',offer);}
+ // The base function is already patched by the existing passport layer.
+ const previous=window.openStoreModal;
+ if(typeof previous==='function')window.openStoreModal=function(id){
+   const selected=offers[Number(id)-1];
+   offer.replaceChildren();
+   const heading=document.createElement('strong');heading.textContent='Vantaggio Passaporto · Autunno 2026';
+   const value=document.createElement('span');value.textContent=selected||'Offerta da definire';
+   offer.append(heading,value);
+   return previous.apply(this,arguments);
+ };
+ // Stop the accidental background-click close; the X remains available.
+ modal.addEventListener('click',function(e){if(e.target===modal){e.stopImmediatePropagation();e.preventDefault();}},true);
 }
-const test=document.getElementById('be-demo-stamp-codes');if(test)test.remove();
+// Display exactly one winter partnership page.
+const selector=document.getElementById('edition-selector');
+if(selector){
+ let winter=document.getElementById('bex-winter-partners');
+ if(!winter){winter=document.createElement('section');winter.id='bex-winter-partners';winter.innerHTML='<div class="winter-card"><p style="color:#059669;font-weight:700">PROSSIMA EDIZIONE</p><h2>Inverno 2026/27</h2><p>Nuove opportunità per le attività del territorio.</p><p>Hai un’attività a Belluno? Contattaci per valutare future collaborazioni.</p><p>Per informazioni, rivolgiti al team del progetto Belluno Experience.</p><button id="bex-return-autumn" type="button">Torna ad Autunno 2026</button></div>';document.querySelector('main')?.appendChild(winter);}
+ const sync=()=>document.body.classList.toggle('bex-winter-mode',selector.value==='ed_inverno_2026_27');
+ selector.addEventListener('change',sync);
+ winter.querySelector('#bex-return-autumn')?.addEventListener('click',()=>{selector.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(selector.value);sync();});
+ selector.value='ed_autunno_2026';if(typeof changeEdition==='function')changeEdition(selector.value);sync();
+}
 })();
 </script>
+
 </body>
 </html>

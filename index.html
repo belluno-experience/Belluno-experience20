@@ -131,7 +131,7 @@
   <!-- Identità provvisoria: marchi fittizi sovrapposti alle foto -->
   <style>
     .store-brand-overlay {position:absolute;bottom:12px;left:12px;width:min(70%,235px);max-height:72px;object-fit:contain;object-position:left bottom;filter:drop-shadow(0 3px 9px rgba(0,0,0,.24));border-radius:9px;z-index:2}
-    .store-brand-modal {position:absolute;top:16px;left:16px;width:min(53%,215px);max-height:65px;object-fit:contain;object-position:left top;filter:drop-shadow(0 3px 8px rgba(0,0,0,.22));border-radius:9px;z-index:2}
+    .store-brand-modal {background:#fffdf8;padding:4px;position:absolute;top:16px;left:16px;width:min(53%,215px);max-height:65px;object-fit:contain;object-position:left top;filter:drop-shadow(0 3px 8px rgba(0,0,0,.22));border-radius:9px;z-index:2}
   </style>
   <script>
     const storeBrandLogos = {
@@ -1754,7 +1754,15 @@ Fine del file originale (dopo lo script esistente).
   window.openStoreModal = id => {
     const s = storesData.find(x => x.id === id); if (!s) return;
     const done = getStamps().includes(id);
-    $('modal-store-image').src = s.image; $('modal-store-name').textContent = s.name;
+    $('modal-store-image').src = s.image;
+    // Il gestore della scheda sostituisce quello originale: impostare anche il logo.
+    const brandImg = $('modal-store-brand');
+    if (brandImg) {
+      brandImg.src = new URL(storeBrandLogo(s.id), document.baseURI).href;
+      brandImg.alt = `Logo fittizio di ${s.name}`;
+      brandImg.style.display = 'block';
+    }
+    $('modal-store-name').textContent = s.name;
     $('modal-store-category').textContent = s.category; $('modal-store-desc').textContent = s.shortDesc;
     const st = $('modal-stamp-status'), b = $('modal-stamp-btn'), ic = $('modal-stamp-icon-bg');
     if (done) {

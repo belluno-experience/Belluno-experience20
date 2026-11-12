@@ -1,0 +1,1 @@
+v1.6.2: logo PNG com fundo externo transparente, ícone centralizado e CSS final sem moldura duplicada. Funcionalidades mantidas da v1.6.1. Testar no navegador e limpar cache da PWA caso apareça a imagem anterior.

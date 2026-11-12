@@ -1,0 +1,1 @@
+v1.6.1 — Fix carrello: l’ultima versione di openStoreModal sovrascriveva il pulsante Aggiungi al carrello con un pulsante data-buy; ora usa data-be16-add. Logo centrato nel contenitore senza offset negativi. Eventi con crop 16:9. CSS hidden per overlay. Nessun pagamento reale. Test interattivi su browser ancora necessari.

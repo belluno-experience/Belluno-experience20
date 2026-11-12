@@ -1,0 +1,1 @@
+Belluno Experience v1.6.3.1 — Correzione del pulsante Esci: sfondo verde, testo bianco, hover e focus visibili. Tutte le altre funzionalità e risorse della v1.6.3 sono conservate. Test visivo nel browser ancora necessario.

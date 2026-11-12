@@ -1,0 +1,8 @@
+Belluno Experience v1.6 — Carrello multinegozio e verifica telefono DEMO
+
+Base: v1.5 Commercial Design.
+Novità: pulsante carrello in testata; aggiunta dei prodotti dalle schede negozio; raggruppamento per negozio; quantità e totali; cashback stimato; conferma ordine dimostrativo (senza pagamento né accredito punti); persistenza locale carrello e ultimi ordini; codice di 6 cifre mostrato a schermo per simulare la verifica telefono, senza invio SMS.
+
+ATTENZIONE: nessun acquisto, pagamento, SMS o verifica identità reale. Dati locali non protetti da backend. Usare numeri di prova e non dati personali reali.
+
+Test consigliati: aggiunta prodotti di negozi diversi, modifica quantità, refresh, checkout, login OTP demo, logout, navigazione, passaporto, wallet, PWA.

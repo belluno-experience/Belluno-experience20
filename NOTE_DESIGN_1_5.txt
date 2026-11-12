@@ -1,0 +1,7 @@
+Belluno Experience v1.5 — Commercial Design
+- Cabeçalho branco e wordmark azul-escuro/verde conforme referência.
+- Ícone visualmente recortado via CSS para ocultar margem branca do arquivo original, sem alterar o arquivo original.
+- Hero comercial em primeiro plano com CTA para lojas/ofertas.
+- Blocos promocionais que direcionam às funcionalidades existentes (não inventam ofertas).
+- Preservado código funcional da v1.5 de estabilização.
+- Pendente: teste visual real em Safari/iPhone e auditoria de fluxos de ponta a ponta.

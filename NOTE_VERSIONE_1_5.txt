@@ -1,0 +1,14 @@
+Belluno Experience v1.5 — Stabilizzazione (12 novembre 2026)
+
+Base: v1.4 originale, NON riscrittura Gemini.
+Correzioni implementate:
+- Traguardo 12/12 aggiornato in updateUI() anziché in un blocco HTML morto.
+- Rimosso script di sincronizzazione accidentalmente incluso nel template di stampa coupon.
+- Rimossa la notifica "Edizione cambiata" durante l’apertura iniziale.
+- Reset esteso ai dati demo bex_demo_v3_ (Wallet, cashback, coupon e interessi).
+- Versione cache service worker aggiornata per forzare il refresh dopo il deploy.
+
+Non modificati: 12 negozi, offerte, QR, codici timbro, login demo, passaporto, mappa, interessi, Wallet, cashback.
+
+Limiti: controllo statico soltanto. Prima della pubblicazione verificare nel browser tutti i flussi e il comportamento del reset. Il reset cancella anche le preferenze di interesse salvate sul dispositivo.
+Per uso commerciale reale servono backend, autenticazione e antifrode.

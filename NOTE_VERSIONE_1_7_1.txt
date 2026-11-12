@@ -1,0 +1,1 @@
+v1.7.1: Removido menu hamburger redundante. Corrigido script BE17 inserido por engano no HTML de impressao de cupons; reposicionamento da home agora roda no documento principal. Carrinho: listener em fase de captura para evitar conflito com handlers de compra anteriores. Testar fluxos no navegador e limpar cache da PWA.

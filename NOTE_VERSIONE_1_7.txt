@@ -1,0 +1,1 @@
+Belluno Experience v1.7 — interface real inspirada no mockup aprovado. Cabeçalho mobile com menu funcional, carrinho, seletor de edição; hero prioritário; atalhos comerciais; aviso demo reposicionado. Mantidos scripts e funcionalidades da v1.6.3.1. Pagamentos e SMS permanecem demonstrativos. Verificar em navegador e smartphone antes de publicar.

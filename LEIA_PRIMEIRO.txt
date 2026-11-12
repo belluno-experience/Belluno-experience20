@@ -1,0 +1,15 @@
+BELLUNO EXPERIENCE v1.7.2 — PRÉVIA DE COMPARTILHAMENTO
+
+Atualização sobre a v1.7.1, sem alteração das funções de compra ou navegação.
+
+1. Extraia este ZIP.
+2. No repositório belluno-experience/Belluno-experience20, envie TODO o conteúdo da pasta, incluindo index.html, images, icons, logos, manifest.webmanifest e service-worker.js.
+3. Preserve os caminhos das pastas. Não envie a pasta externa como subpasta; os arquivos devem ficar na raiz do repositório.
+4. Faça commit e aguarde a publicação.
+5. Compartilhe https://belluno-experience.github.io/Belluno-experience20/?v=172 para testar a nova prévia.
+
+A imagem para redes sociais está em images/anteprima-social.jpg (1200 × 630 px).
+As prévias do WhatsApp e de outras redes podem ficar em cache por algum tempo.
+Se o endereço publicado mudar, atualize as URLs absolutas og:url, og:image e twitter:image.
+
+OBS: atualização de compartilhamento apenas. Problemas anteriores do carrinho não foram auditados nem corrigidos neste pacote.

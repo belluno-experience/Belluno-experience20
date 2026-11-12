@@ -2501,7 +2501,7 @@ if(selector){
  function catalog(){return typeof storesData!=='undefined'&&Array.isArray(storesData)?storesData:[]}
  function details(x){const store=catalog().find(s=>s.id===x.storeId);const p=store&&store.products&&store.products[x.productIndex];return store&&p?{store,product:p,price:priceCents(p.price),qty:x.qty}:null}
  function refreshCount(){const n=getCart().reduce((sum,x)=>sum+x.qty,0);if($('be16-cart-count'))$('be16-cart-count').textContent=n;document.querySelectorAll('.be16-cart-live').forEach(el=>el.textContent='('+n+')')}
- function add(storeId,productIndex){const store=catalog().find(s=>s.id===storeId);if(!store||!store.products||!store.products[productIndex])return;const v=getCart();let line=v.find(x=>x.storeId===storeId&&x.productIndex===productIndex);if(line)line.qty=Math.min(99,line.qty+1);else v.push({storeId,productIndex,qty:1});setCart(v);if(typeof showToast==='function')showToast('Prodotto aggiunto al carrello!','success');openCart()}
+ function add(storeId,productIndex){const store=catalog().find(s=>s.id===storeId);if(!store||!store.products||!store.products[productIndex])return;const v=getCart();let line=v.find(x=>x.storeId===storeId&&x.productIndex===productIndex);if(line)line.qty=Math.min(99,line.qty+1);else v.push({storeId,productIndex,qty:1});setCart(v);if(typeof showToast==='function')showToast('Prodotto aggiunto al carrello!','success');const modal=$('store-modal');if(modal)modal.classList.add('hidden');openCart()}
  function qty(storeId,productIndex,delta){const v=getCart(),x=v.find(a=>a.storeId===storeId&&a.productIndex===productIndex);if(!x)return;x.qty+=delta;setCart(v.filter(a=>a.qty>0));renderCart()}
  function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
  function renderCart(){const target=$('be16-cart-items'),summary=$('be16-cart-summary');if(!target)return;const v=getCart().map(details).filter(Boolean);if(!v.length){target.innerHTML='<p class="be16-muted" style="padding:22px 0">Il carrello è vuoto. Esplora le 12 botteghe e aggiungi un prodotto!</p>';summary.innerHTML='<button type="button" class="be16-primary" onclick="BE16.closeCart();switchTab(\'scopri\');document.getElementById(\'stores-grid\')?.scrollIntoView({behavior: \'smooth\'})">Scopri i negozi</button>';return}
@@ -2531,6 +2531,27 @@ document.addEventListener('DOMContentLoaded',function(){
  const quick=document.querySelector('#tab-scopri .be14-quick');
  if(hero&&quick)hero.insertAdjacentElement('afterend',quick);
 });
+</script>
+
+<style id="be173-controls-style">
+#be16-cart-overlay:not([hidden]),#be16-otp-overlay:not([hidden]){z-index:2147483640!important}
+#be16-cart-button{pointer-events:auto!important;touch-action:manipulation}
+body:not(.be173-admin) #be173-admin-control{display:none!important}
+</style>
+<script id="be173-controls">
+(function(){'use strict';
+function run(){
+ const cart=document.getElementById('be16-cart-button');
+ if(cart){cart.removeAttribute('onclick');cart.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();if(window.BE16&&typeof BE16.openCart==='function')BE16.openCart();},true)}
+ const admin=new URLSearchParams(location.search).get('admin')==='1';
+ if(admin)document.body.classList.add('be173-admin');
+ document.querySelectorAll('header button[title="Dashboard Organizzativa KPI"]').forEach(b=>{b.id='be173-admin-control';b.onclick=function(){if(typeof openModal==='function')openModal('dashboard-modal')}});
+ const brand=document.querySelector('header .be15-mark-frame')?.parentElement;
+ if(brand){brand.removeAttribute('onclick');brand.setAttribute('role','button');brand.setAttribute('tabindex','0');const home=()=>{if(typeof switchTab==='function')switchTab('scopri')};brand.addEventListener('click',home);brand.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();home()}})}
+ document.querySelectorAll('header button').forEach(b=>{if(b.id==='be16-cart-button'||b.id==='be173-admin-control')return;b.style.touchAction='manipulation'});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
 </script>
 </body>
 </html>

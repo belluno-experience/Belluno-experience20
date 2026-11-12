@@ -1,0 +1,1 @@
+Belluno Experience v1.7.3: ajuste de carrinho e cabeçalho. O modal da loja fecha ao adicionar produto; carrinho abre com z-index prioritário; controle de carrinho do header recebe listener direto; logo navega para Home; dashboard apenas em ?admin=1. Sem alteração de pagamentos reais. Testes no navegador/iPhone pendentes. Não publicar antes de testar.
